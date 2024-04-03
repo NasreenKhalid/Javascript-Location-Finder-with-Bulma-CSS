@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.min.css"
+        integrity="sha512-+oEiKVGJRHutsibRYkkTIfjI0kspDtgJtkIlyPCNTCFCdhy+nSe25nvrCw7UpHPwNbdmNw9AkgGA+ptQxcjPug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Location Finder</title>
+    <style>
+        .icon-remove,
+        .icon-check {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero hero-body is-dark container">
+        <h1 class="title">US Location Info</h1>
+        <h2 class="subtitle">Enter a zipcode to get the Location</h2>
+        <form id="zipform">
+            <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input zip is-large" type="text" placeholder="Enter a zipcode">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-map-pin"></i>
+                    </span>
+                    <span class="icon is-small is-right icon-check">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    <span class="icon is-small is-right icon-remove">
+                        <i class="fa fa-remove"></i>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </section>
+
+<br>
+<div class="container">
+    <div id="output"></div>
+
+</div>
+
+
+<script>
+    document.querySelector('#zipform').addEventListener('submit', getLocationInfo)
+
+    function getLocationInfo(e){
+        e.preventDefault();
+const zip = document.querySelector('.zip').value;
+console.log(zip)
+fetch(`http://api.zippopotam.us/us/${zip}`)
+.then(response => response.json())
+.then(data => {
+    console.log(data)
+})
+    }
+</script>
+</body>
+
+</html>
